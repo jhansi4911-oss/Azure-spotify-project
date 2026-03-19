@@ -5,13 +5,9 @@
 			{
 				"name": "SQLtoLaKe",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
-					{
-						"activity": "last_cdc",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
 					{
 						"activity": "current",
 						"dependencyConditions": [
@@ -119,6 +115,8 @@
 			{
 				"name": "current",
 				"type": "SetVariable",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"secureOutput": false,
@@ -136,6 +134,8 @@
 			{
 				"name": "Ifimcremental",
 				"type": "IfCondition",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "SQLtoLaKe",
