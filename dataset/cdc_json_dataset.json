@@ -1,0 +1,25 @@
+{
+	"name": "cdc_json_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filecontent": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cdc.json",
+				"folderPath": "cdc",
+				"fileSystem": "bronze"
+			}
+		},
+		"schema": {}
+	}
+}
