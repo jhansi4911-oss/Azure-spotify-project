@@ -240,6 +240,8 @@
 			{
 				"name": "update_last_cdc",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -356,14 +358,9 @@
 			{
 				"name": "Read JSON File",
 				"type": "Lookup",
-				"dependsOn": [
-					{
-						"activity": "updated_cdc_json",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -400,7 +397,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Read JSON File",
+						"activity": "updated_cdc_json",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -409,7 +406,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Read JSON File').output.firstRow.tables\n",
+						"value": "@activity('last_cdc').output.firstRow.tables\n",
 						"type": "Expression"
 					},
 					"activities": [
