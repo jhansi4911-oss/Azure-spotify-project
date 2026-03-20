@@ -185,7 +185,7 @@
 							"typeProperties": {
 								"variableName": "updated_cdc_json",
 								"value": {
-									"value": "@json(concat(\n    '{',\n      '\"schema\":\"', pipeline().parameters.schema, '\",',\n      '\"table\":\"', pipeline().parameters.table, '\",',\n      '\"cdc_column\":\"', pipeline().parameters.cdc_col, '\",',\n      '\"last_cdc_value\":\"', activity('Script1').output.cdc, '\"',\n    '}'\n))",
+									"value": "@json(concat(\n    '{',\n      '\"schema\":\"', pipeline().parameters.schema, '\",',\n      '\"table\":\"', pipeline().parameters.table, '\",',\n      '\"cdc_column\":\"', pipeline().parameters.cdc_col, '\",',\n      '\"last_cdc_value\":\"', activity('Script1').output.resultSets[0].rows[0].cdc, '\"',\n    '}'\n))\n\n",
 									"type": "Expression"
 								}
 							}
