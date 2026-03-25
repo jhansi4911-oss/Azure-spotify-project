@@ -1,0 +1,150 @@
+{
+	"name": "GetVariableActivity",
+	"properties": {
+		"activities": [
+			{
+				"name": "getPrsn_id",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "prsn_id",
+					"value": "101"
+				}
+			},
+			{
+				"name": "getPrnsName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getPrsn_id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "prsn_name",
+					"value": "Srikar"
+				}
+			},
+			{
+				"name": "Set variable3",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getPrsnLoc",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "msg",
+					"value": {
+						"value": "@concat('person id is ',variables('prsn_id'),', person name is ',variables('prsn_name'), ', person age is ',variables('prsn_age'), ', gender is ',variables('prsn_gender'), ' and location is ',variables('prns_loc'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "getPrsnGender",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "GetPrsnAge",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "prsn_gender",
+					"value": "Male"
+				}
+			},
+			{
+				"name": "GetPrsnAge",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getPrnsName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "prsn_age",
+					"value": "23"
+				}
+			},
+			{
+				"name": "getPrsnLoc",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getPrsnGender",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "prns_loc",
+					"value": "Hyderabad"
+				}
+			}
+		],
+		"variables": {
+			"prsn_id": {
+				"type": "String"
+			},
+			"prsn_name": {
+				"type": "String"
+			},
+			"prsn_age": {
+				"type": "String"
+			},
+			"prsn_gender": {
+				"type": "String"
+			},
+			"prns_loc": {
+				"type": "String"
+			},
+			"msg": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
