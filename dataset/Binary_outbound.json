@@ -1,12 +1,12 @@
 {
-	"name": "Binary2",
+	"name": "Binary_outbound",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLake",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"filename": {
+			"foldername": {
 				"type": "string"
 			}
 		},
@@ -15,11 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().filename",
+				"folderPath": {
+					"value": "@concat('outbound/',dataset().foldername)",
 					"type": "Expression"
 				},
-				"folderPath": "inbound",
 				"fileSystem": "devcontainer"
 			}
 		}
